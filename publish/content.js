@@ -24,9 +24,7 @@
     delay: 0,
     autoLikeMode: 'favorites', // 'off' | 'favorites' | 'all'
     favoriteCreators: ['@mrbeast'], // Lowercase handles/names
-    minWatchBeforeLike: 2.5, // seconds
-    isProActivated: true,
-    requireLicenseLink: false
+    minWatchBeforeLike: 2.5 // seconds
   };
 
   // State
@@ -501,14 +499,7 @@
     }
 
     hud.style.display = 'flex';
-    if (settings.requireLicenseLink && !settings.isProActivated) {
-      hud.className = 'disabled';
-      hud.innerHTML = `
-        <span class="hud-dot" style="background:#f39c12;box-shadow:none;"></span>
-        <span class="hud-text">🔒 Enter VIP Link</span>
-        <span class="hud-hint">VIP</span>
-      `;
-    } else if (settings.autoScroll) {
+    if (settings.autoScroll) {
       hud.className = '';
       hud.innerHTML = `
         <span class="hud-dot"></span>

@@ -39,13 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const historyCount = document.getElementById('historyCount');
   const clearHistoryBtn = document.getElementById('clearHistoryBtn');
 
-  // VIP License Elements
-  const licenseInput = document.getElementById('licenseInput');
-  const activateLicenseBtn = document.getElementById('activateLicenseBtn');
-  const licenseStatusBadge = document.getElementById('licenseStatusBadge');
-  const licenseFeedback = document.getElementById('licenseFeedback');
-  const toggleLockMode = document.getElementById('toggleLockMode');
-
   // Default Settings
   let settings = {
     autoScroll: true,
@@ -55,9 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showIndicator: true,
     delay: 0,
     autoLikeMode: 'favorites',
-    favoriteCreators: ['@mrbeast'],
-    isProActivated: true,
-    requireLicenseLink: false
+    favoriteCreators: ['@mrbeast']
   };
 
   // Load Saved Settings
@@ -80,9 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
       autoLikeRadios.forEach((radio) => {
         radio.checked = radio.value === settings.autoLikeMode;
       });
-
-      // VIP Status UI
-      updateLicenseUI();
 
       // Render Creator Chips
       renderCreatorChips();
@@ -108,21 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function updateLicenseUI() {
-    if (licenseStatusBadge) {
-      if (settings.isProActivated) {
-        licenseStatusBadge.textContent = '👑 Active';
-        licenseStatusBadge.className = 'badge';
-      } else {
-        licenseStatusBadge.textContent = '🔒 Locked';
-        licenseStatusBadge.className = 'badge inactive';
-      }
-    }
-    if (toggleLockMode) {
-      toggleLockMode.checked = settings.requireLicenseLink === true;
-    }
-  }
-
   // Save Settings Helper
   function saveSettings() {
     const selectedMode = Array.from(autoLikeRadios).find((r) => r.checked)?.value || 'favorites';
@@ -135,70 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
       showIndicator: toggleIndicator.checked,
       delay: parseFloat(delayRange.value) || 0,
       autoLikeMode: selectedMode,
-      favoriteCreators: settings.favoriteCreators,
-      isProActivated: settings.isProActivated,
-      requireLicenseLink: toggleLockMode ? toggleLockMode.checked : false
+      favoriteCreators: settings.favoriteCreators
     };
 
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
       chrome.storage.sync.set(newSettings);
     }
-  }
-
-  // License Activation logic
-  if (activateLicenseBtn && licenseInput) {
-    activateLicenseBtn.addEventListener('click', () => {
-      const val = (licenseInput.value || '').trim();
-      if (!val) {
-        showFeedback('Please enter an activation link or key.', '#ff3b5c');
-        return;
-      }
-
-      // Valid if link has unlock/pro/activate or matches standard VIP keys
-      const lower = val.toLowerCase();
-      const isValid =
-        lower.includes('/unlock') ||
-        lower.includes('pro=true') ||
-        lower.includes('activate') ||
-        lower.includes('license') ||
-        lower.includes('key=') ||
-        lower.includes('vip') ||
-        lower === 'pro-2026' ||
-        lower === 'shortspro' ||
-        lower === 'pro' ||
-        lower === 'unlock' ||
-        (val.startsWith('http') && val.length > 12);
-
-      if (isValid) {
-        settings.isProActivated = true;
-        saveSettings();
-        updateLicenseUI();
-        showFeedback('✅ Pro Unlocked! Link verified successfully.', '#2ecc71');
-        licenseInput.value = '';
-      } else {
-        showFeedback('❌ Invalid activation link or key. Please check again.', '#ff3b5c');
-      }
-    });
-  }
-
-  if (toggleLockMode) {
-    toggleLockMode.addEventListener('change', () => {
-      settings.requireLicenseLink = toggleLockMode.checked;
-      if (toggleLockMode.checked && !settings.isProActivated) {
-        showFeedback('🔒 License requirement is now active for users.', '#f39c12');
-      }
-      saveSettings();
-    });
-  }
-
-  function showFeedback(msg, color) {
-    if (!licenseFeedback) return;
-    licenseFeedback.textContent = msg;
-    licenseFeedback.style.color = color;
-    licenseFeedback.style.display = 'block';
-    setTimeout(() => {
-      licenseFeedback.style.display = 'none';
-    }, 3500);
   }
 
   // Event Listeners for Controls
