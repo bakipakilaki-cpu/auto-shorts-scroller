@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Shorts Scroller Pro ⚡</title>
+  <link rel="icon" type="image/png" href="publish/icons/icon48.png">
+  <style>
+    :root {
+      --primary: #ff0033;
+      --primary-hover: #e6002e;
+      --bg: #0a0a0a;
+      --card-bg: #141414;
+      --border: #262626;
+      --text: #ffffff;
+      --text-muted: #999999;
+      --green: #2ecc71;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 20px 60px;
+    }
+    .hero {
+      max-width: 800px;
+      margin: 80px auto 40px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 0, 51, 0.15);
+      color: #ff4d6d;
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 40%, #ff4d6d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 0, 51, 0.4);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #282828;
+      transform: translateY(-2px);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 60px auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: left;
+    }
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .install-box {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: left;
+    }
+    .install-box h2 {
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .install-box ol {
+      margin-left: 20px;
+      color: #ccc;
+    }
+    .install-box li {
+      margin-bottom: 10px;
+    }
+    .install-box code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #ff4d6d;
+      font-family: monospace;
+    }
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="badge">⚡ Pro Extension v1.5.0</div>
+    <h1>Auto Shorts Scroller</h1>
+    <p class="subtitle">Hands-free YouTube Shorts: Auto-Scroll, Skip Ads, Instant G-Key, Auto-Like & History.</p>
+    <div class="cta-group">
+      <a href="https://github.com/bakipakilaki-cpu/auto-shorts-scroller/releases/latest/download/auto-shorts-scroller.zip" class="btn btn-primary">
+        📥 Download Extension (.zip)
+      </a>
+      <a href="https://github.com/bakipakilaki-cpu/auto-shorts-scroller" class="btn btn-secondary">
+        ⭐ View on GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Auto-Scroll Feed</h3>
+      <p>Seamlessly glides to the next video the moment the current Short finishes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Universal Ad Skip</h3>
+      <p>Instantly detects and skips sponsored Shorts and video ads in milliseconds.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⌨️</div>
+      <h3>Instant G Key</h3>
+      <p>Press G to skip boring Shorts immediately without touching your mouse.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💎</div>
+      <h3>VIP License Gate</h3>
+      <p>Enter your activation link to unlock full Pro capabilities.</p>
+    </div>
+  </div>
+
+  <div class="install-box">
+    <h2>🚀 Quick Install Guide (Chrome / Brave / Edge)</h2>
+    <ol>
+      <li>Download <a href="https://github.com/bakipakilaki-cpu/auto-shorts-scroller/releases/latest/download/auto-shorts-scroller.zip" style="color:#ff4d6d;">auto-shorts-scroller.zip</a> and unzip it.</li>
+      <li>Open your browser and navigate to <code>chrome://extensions</code>.</li>
+      <li>Turn on <strong>Developer mode</strong> in the top-right corner.</li>
+      <li>Click <strong>Load unpacked</strong> and choose the unzipped folder.</li>
+      <li>Open <a href="https://www.youtube.com/shorts" target="_blank" style="color:#2ecc71;">YouTube Shorts</a> and enjoy!</li>
+    </ol>
+  </div>
+
+  <footer>
+    <p>© 2026 Auto Shorts Scroller. Created by <a href="https://github.com/bakipakilaki-cpu" style="color:#888;">bakipakilaki-cpu</a>.</p>
+  </footer>
+</body>
+</html>

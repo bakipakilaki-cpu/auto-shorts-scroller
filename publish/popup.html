@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Shorts Scroller Pro</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-group">
+        <img src="icons/icon48.png" alt="Logo" class="logo">
+        <div>
+          <h1>Shorts Pro</h1>
+          <span class="badge" id="statusBadge">Active</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="controls">
+        <span class="tab-icon">⚡</span> Controls
+      </button>
+      <button class="tab-btn" data-tab="autolike">
+        <span class="tab-icon">❤️</span> Likes
+      </button>
+      <button class="tab-btn" data-tab="history">
+        <span class="tab-icon">📜</span> History
+      </button>
+      <button class="tab-btn" data-tab="license">
+        <span class="tab-icon">💎</span> VIP
+      </button>
+    </nav>
+
+    <!-- Tab 1: Controls -->
+    <section class="tab-pane active" id="tab-controls">
+      <div class="settings-list">
+        <!-- Auto Scroll -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleAutoScroll">Auto-Scroll</label>
+            <span class="setting-desc">Scroll to next Short on completion</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleAutoScroll" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Auto-Skip Ads -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleSkipAds">Auto-Skip Ads</label>
+            <span class="setting-desc">Instantly skip sponsored Short ads</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleSkipAds" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Skip with G -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleSkipKey">
+              Skip with <kbd class="key-badge">G</kbd>
+            </label>
+            <span class="setting-desc">Press G to skip short instantly</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleSkipKey" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Skip with Space -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleSpaceSkip">
+              Skip with <kbd class="key-badge">Space</kbd>
+            </label>
+            <span class="setting-desc">Also allow Spacebar to skip</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleSpaceSkip">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- On-Screen HUD Badge -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleIndicator">Screen Badge</label>
+            <span class="setting-desc">Show interactive pill in bottom-right</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleIndicator" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Transition Delay -->
+        <div class="setting-item delay-setting">
+          <div class="setting-info">
+            <div class="delay-title-row">
+              <span class="setting-title">Transition Delay</span>
+              <span class="delay-val" id="delayValue">0.0s</span>
+            </div>
+            <span class="setting-desc">Wait time before auto-advancing</span>
+          </div>
+          <input type="range" id="delayRange" min="0" max="3" step="0.5" value="0" class="range-slider">
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Auto-Like -->
+    <section class="tab-pane" id="tab-autolike">
+      <div class="settings-list">
+        <!-- Auto-Like Mode -->
+        <div class="setting-item mode-setting">
+          <div class="setting-info">
+            <span class="setting-title">Auto-Like Mode</span>
+            <span class="setting-desc">Automatically like Shorts you watch</span>
+          </div>
+          <div class="mode-options">
+            <label class="mode-label">
+              <input type="radio" name="autoLikeMode" value="off">
+              <span>Off</span>
+            </label>
+            <label class="mode-label">
+              <input type="radio" name="autoLikeMode" value="favorites" checked>
+              <span>Favorites</span>
+            </label>
+            <label class="mode-label">
+              <input type="radio" name="autoLikeMode" value="all">
+              <span>All</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Creator Whitelist Box -->
+        <div class="card-box" id="creatorBox">
+          <div class="card-title-row">
+            <span class="card-title">Favorite Creators</span>
+            <span class="card-subtitle">Channel handle or name</span>
+          </div>
+
+          <div class="creator-input-group">
+            <input type="text" id="creatorInput" placeholder="@MrBeast or channel" class="text-input">
+            <button id="addCreatorBtn" class="primary-btn">Add</button>
+          </div>
+
+          <div class="creators-chip-list" id="creatorsChipList">
+            <!-- Rendered by JS -->
+          </div>
+          <p class="field-hint">Shorts from these channels are automatically liked after 2.5s of playback.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Recent Watched History -->
+    <section class="tab-pane" id="tab-history">
+      <div class="history-header">
+        <span class="history-count" id="historyCount">0 Shorts</span>
+        <button id="clearHistoryBtn" class="text-btn">Clear</button>
+      </div>
+
+      <div class="history-list" id="historyList">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Tab 4: VIP License / Activation -->
+    <section class="tab-pane" id="tab-license">
+      <div class="settings-list">
+        <div class="card-box">
+          <div class="card-title-row">
+            <span class="card-title">VIP Activation Link</span>
+            <span class="badge" id="licenseStatusBadge">👑 Active</span>
+          </div>
+          <p class="field-hint" style="margin-bottom: 10px;">
+            Enter your private activation link or key to open and unlock full Pro access:
+          </p>
+
+          <div class="creator-input-group">
+            <input type="text" id="licenseInput" placeholder="Paste activation link or key..." class="text-input">
+            <button id="activateLicenseBtn" class="primary-btn">Unlock</button>
+          </div>
+
+          <div id="licenseFeedback" style="font-size: 11px; margin-top: 6px; display: none;"></div>
+
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #282828; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 11px; color: #888;">Need an activation link?</span>
+            <a href="https://github.com/bakipakilaki-cpu/auto-shorts-scroller" target="_blank" class="text-btn" style="color: #ff3b5c; font-weight: 600;">Get Pro Access ↗</a>
+          </div>
+        </div>
+
+        <!-- Creator Monetization Toggle -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <label class="setting-title" for="toggleLockMode">Require License Link</label>
+            <span class="setting-desc">Lock app for buyers to monetize</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggleLockMode">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="hint-card">
+        <span class="hint-icon">💡</span>
+        <span class="hint-text">Press <strong>G</strong> anytime to skip. Click the bottom-right badge to quick-toggle.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
